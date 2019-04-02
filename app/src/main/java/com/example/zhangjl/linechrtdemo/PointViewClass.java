@@ -120,12 +120,11 @@ public class PointViewClass extends View {
                 point = listPoint.get(listPoint.size()-1);
                 drawPointList.remove(0);
                 drawPointList.add(point);
-                maxXvalue = maxXvalue+wLineDis;
             }
         }else {   //测试已经停止
             drawPointList.clear();
             if (xInt>maxXvalue){
-                xInt = maxXvalue;
+                xInt = maxXvalue-20*wLineDis;
             }else if (xInt<20){
                 xInt = 20;
             }
@@ -134,6 +133,7 @@ public class PointViewClass extends View {
             if (index>listPoint.size()-20){
                 index = listPoint.size()-20;
             }
+            Log.e("11111111111",String.valueOf(index));
             for (int j = 0;j<20;j++){
                 PointClass point = listPoint.get(index+j);
                 drawPointList.add(point);
@@ -211,5 +211,8 @@ public class PointViewClass extends View {
      */
     public void setTest(Boolean isTest){
         this.isTest = isTest;
+        if (!isTest){
+            maxXvalue  = listPoint.size()*wLineDis;
+        }
     }
 }
